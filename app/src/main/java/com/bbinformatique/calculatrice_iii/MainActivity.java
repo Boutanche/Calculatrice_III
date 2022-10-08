@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -32,5 +34,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.display = findViewById(R.id.textView);
         Log.i(this.getClass().getName(), "Lancement de l'activité");
+    }
+
+    public void onClick(View v){
+        Button button = (Button) v;
+        Log.i(this.getClass().getName(), "Pressed = " + button.getText());
+        this.calculator.input((String)button.getText());
+        Log.i(this.getClass().getName(), this.calculator.toString());
+        this.display.setText(this.calculator.display());
     }
 }
