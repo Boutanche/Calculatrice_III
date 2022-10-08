@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * A la création de l'activité
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i(this.getClass().getName(), "Lancement de l'activité");
     }
 
+    /**
+     * Au Click sur un boutton de la calculatrice
+     * @param v View
+     */
     public void onClick(View v){
         Button button = (Button) v;
         Log.i(this.getClass().getName(), "Pressed = " + button.getText());

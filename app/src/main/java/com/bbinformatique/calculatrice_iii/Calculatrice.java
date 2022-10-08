@@ -8,4 +8,17 @@ public class Calculatrice {
         String zero = "0";
         return zero;
     }
+    private enum State {
+        OPERAND_1,
+        OPERAND_2,
+        OPERATOR,
+        RESULT,
+        ERROR
+    }
+    private enum Operator {
+        ADD,
+        SUB,
+        MUL,
+        DIV
+    }
 }
