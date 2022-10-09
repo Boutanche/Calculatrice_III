@@ -1,11 +1,13 @@
 package com.bbinformatique.calculatrice_iii;
 
+import android.util.Log;
+
 /**
  * Classe qui réalise les calcules de la calculatrice
  */
 public class Calculatrice {
     private Operator operator;
-    private State state;
+    private State state = State.OPERAND_1;
     private double result;
     private double operand_1;
     private double operand_2;
@@ -35,6 +37,7 @@ public class Calculatrice {
                 this.resoudre();
                 break;
             default:
+                Log.i(this.getClass().getName(), "Entree est potentiellement un chiffre : " + text);
                 try{
                     this.entreeChiffre(Integer.parseInt(text));
                 }catch (NumberFormatException ignore) {
@@ -104,6 +107,8 @@ public class Calculatrice {
     }
 
     private void entreeChiffre(int parseInt){
+        Log.i(this.getClass().getName(), "Chiffre : " + parseInt);
+        Log.i(this.getClass().getName(), "state : " + this.state.toString());
         switch (this.state){
             case RESULT:
                 break;

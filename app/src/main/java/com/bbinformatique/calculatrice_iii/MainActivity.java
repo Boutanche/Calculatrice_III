@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Calcul pour la Calculatrice
      */
-    private Calculatrice calculator;
+    private Calculattrice_II calculator;
 
     /**
      * Affichage sur la calculatrice
@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.calculator = new Calculatrice();
+        this.calculator = new Calculattrice_II();
         setContentView(R.layout.activity_main);
-        this.display = findViewById(R.id.textView);
         Log.i(this.getClass().getName(), "Lancement de l'activité");
     }
 
@@ -43,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
         Button button = (Button) v;
         Log.i(this.getClass().getName(), "Pressed = " + button.getText());
-        this.calculator.input((String)button.getText());
-        Log.i(this.getClass().getName(), this.calculator.toString());
-        this.display.setText(this.calculator.display());
+        this.calculator.touchePressee((String)button.getText());
+        Log.i(this.getClass().getName(), "input = " + button.getText());
+        display = findViewById(R.id.textView);
+        display.setText(calculator.getValeurAffichee());
     }
 }
