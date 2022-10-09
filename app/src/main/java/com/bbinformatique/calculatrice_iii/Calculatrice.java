@@ -37,7 +37,8 @@ public class Calculatrice {
             default:
                 try{
                     this.entreeChiffre(Integer.parseInt(text));
-                }catch (NumberFormatException ignore){
+                }catch (NumberFormatException ignore) {
+                    // Faire quelque chose
                 }
                 
         }
