@@ -4,6 +4,12 @@ package com.bbinformatique.calculatrice_iii;
  * Classe qui réalise les calcules de la calculatrice
  */
 public class Calculatrice {
+    private Operator operator;
+    private State state;
+    private Integer result;
+    private Integer operand_1;
+    private Integer operand_2;
+
     /**
      * Données en entrée
      * @param text String
@@ -47,6 +53,11 @@ public class Calculatrice {
     }
 
     private void resset() {
+        this.state = State.OPERAND_1;
+        this.result = 0;
+        this.operand_1 = 0;
+        this.operand_2 = 0;
+        this.operator = null;
     }
 
     /**
