@@ -98,12 +98,16 @@ public class Calculattrice_II {
                 break;
             case ACQ_NB2:
                 result = calcul();
+                operator = operateur;
                 affichage = "" + result;
                 etat = Etat.RESULTAT;
                 break;
             case RESULTAT:
+                result = calcul();
+                operator = operateur;
                 nb1 = Double.parseDouble(String.valueOf(result));
                 etat = Etat.ACQ_NB2;
+                affichage = "" + result;
 
                 break;
             default:
@@ -123,12 +127,17 @@ public class Calculattrice_II {
                 affichage = "" + nb1;
                 break;
             case ACQ_NB2:
-                nb1 = acquisitionNombre(nb2, chiffre);
-                affichage = "" + nb2;
+                result = calcul();
+                etat = Etat.RESULTAT;
+                nb2 = acquisitionNombre((int) nb2, chiffre);
+                affichage = "" + result;
                 break;
             case RESULTAT:
-                nb1 = 0;
-                etat = Etat.ACQ_NB1;
+                result = calcul();
+                nb1 = result;
+                nb2 = (int) nb2;
+                etat = Etat.ACQ_NB2;
+                affichage = "" + result;
                 break;
             default:
                 break;
