@@ -7,8 +7,8 @@ public class Calculatrice {
     private Operator operator;
     private State state;
     private Integer result;
-    private Integer operand_1;
-    private Integer operand_2;
+    private double operand_1;
+    private double operand_2;
 
     /**
      * Données en entrée
@@ -42,14 +42,45 @@ public class Calculatrice {
                 
         }
     }
+
+    private void entreeChiffre(int parseInt) {
+    }
+
     private void entreeOperator(Operator operator){
+        switch (this.state){
+            case OPERAND_2:
+                this.resoudre();
+                break;
+            case OPERAND_1:
+                this.operator = operator;
+                this.state = State.OPERATOR;
+                break;
+            case RESULT:
+                this.operand_1 = this.result;
+                this.operand_2 = 0;
+                this.result = 0;
+                break;
+            case OPERATOR:
+                // Change operator
+                break;
+            case ERROR:
+                // Ne rien faire
+                break;
+            default:
+                break;
+        }
 
     }
 
     private void resoudre() {
     }
 
-    private void entreeChiffre(int parseInt) {
+    private double entreeChiffre(double operand, int parseInt) {
+        if (operand != 0){
+            operand*=10;
+        }
+        operand += parseInt;
+        return operand;
     }
 
     private void resset() {
