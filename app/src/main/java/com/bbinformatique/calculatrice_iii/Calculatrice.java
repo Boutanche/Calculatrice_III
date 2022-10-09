@@ -6,7 +6,7 @@ package com.bbinformatique.calculatrice_iii;
 public class Calculatrice {
     private Operator operator;
     private State state;
-    private Integer result;
+    private double result;
     private double operand_1;
     private double operand_2;
 
@@ -43,9 +43,10 @@ public class Calculatrice {
         }
     }
 
-    private void entreeChiffre(int parseInt) {
-    }
-
+    /**
+     * Entrée d'un opérateur
+     * @param operator Operator
+     */
     private void entreeOperator(Operator operator){
         switch (this.state){
             case OPERAND_2:
@@ -72,10 +73,57 @@ public class Calculatrice {
 
     }
 
+    /**
+     * Résolution du calcul
+     */
     private void resoudre() {
+        switch (this.operator){
+            case ADD:
+                this.result = this.operand_1 + this.operand_2;
+                break;
+            case SUB:
+                this.result = this.operand_1 - this.operand_2;
+                break;
+            case MUL:
+                this.result = this.operand_1 * this.operand_2;
+                break;
+            case DIV:
+                // Traiter la division par 0
+                if (this.operand_2 == 0){
+                    this.state = State.ERROR;
+                    return;
+                }
+                else {
+                    this.result = this.operand_1 / this.operand_2;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
-    private double entreeChiffre(double operand, int parseInt) {
+    private void entreeChiffre(int parseInt){
+        switch (this.state){
+            case RESULT:
+                break;
+            case ERROR:
+                this.resset();
+                break;
+            case OPERAND_1:
+                this.operand_1 = entreeChiffreOperande(this.operand_1, parseInt);
+                break;
+            case OPERAND_2:
+                this.operand_2 = entreeChiffreOperande(this.operand_2, parseInt);
+
+                break;
+            case OPERATOR:
+                this.state = State.OPERAND_2;
+                break;
+
+        }
+    }
+
+    private double entreeChiffreOperande(double operand, int parseInt) {
         if (operand != 0){
             operand*=10;
         }
